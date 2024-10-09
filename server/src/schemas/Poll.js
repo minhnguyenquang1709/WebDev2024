@@ -12,7 +12,7 @@ const pollSchema = new mongoose.Schema(
     ],
     expiresAt: { type: Date }, // Optional expiration date for the poll
     createdBy: {
-      type: mongoose.Schema.Types.ObjectId,
+      type: mongoose.SchemaTypes.ObjectId,
       ref: "User",
       required: true,
     }, // Reference to the poll creator

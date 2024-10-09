@@ -21,7 +21,8 @@ const userSchema = new mongoose.Schema(
     },
     profileName: {
       type: String,
-      required: false,
+      required: true,
+      unique: true,
       immutable: false,
       minLength: 4,
       maxLength: 20,
