@@ -1,28 +1,14 @@
+const configServerApp = require("./configs/configServerApp");
 const express = require("express");
-const cors = require("cors");
 const mongoose = require("mongoose");
 const User = require("./schemas/User");
 const Survey = require("./schemas/Survey");
-const port = 3000;
+require("dotenv").config();
+const port = process.env.PORT;
 
-// server
+// initialize and config server
 const app = express();
-app.use(express.json());
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      callback(null, origin); // reflect the origin sent by the client
-    },
-    credentials: true,
-  })
-);
-
-const mainRouter = require("./routes/main");
-const generatorRouter = require("./routes/generator");
-const auth = require("./routes/auth");
-app.use("/api", mainRouter);
-app.use("/new", generatorRouter);
-app.use("/auth", auth.router);
+configServerApp(app);
 
 // ------------------------------------------------------------------------------
 // database
