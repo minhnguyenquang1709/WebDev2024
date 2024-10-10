@@ -29,6 +29,33 @@ const AuthPage = () => {
     }
   };
 
+  const handleRegister = async ({ email, username, password }) => {
+    if (email.length < 1 || username.length < 1 || password.length < 1) {
+      alert("Invalid info");
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/auth/register",
+        {
+          email,
+          username,
+          password,
+        },
+        { withCredentials: true }
+      );
+      console.log("From Register: ", response.data);
+      if (response.status !== 200) {
+        console.log("Register failed");
+        return;
+      }
+      navigate("/main");
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <div className="bg-cover bg-center bg-no-repeat bg-fixed flex items-center justify-center min-h-screen p-5">
       <div className="flex w-full max-w-4xl h-[600px] border-3 border-green-400/30 rounded-[30px] backdrop-blur-lg overflow-hidden">
@@ -58,7 +85,11 @@ const AuthPage = () => {
             </button>
           </div>
 
-          {isLogin ? <Login onLogin={handleLogin} /> : <Register />}
+          {isLogin ? (
+            <Login onLogin={handleLogin} />
+          ) : (
+            <Register onRegister={handleRegister} />
+          )}
         </div>
       </div>
     </div>
