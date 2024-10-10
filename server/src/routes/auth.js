@@ -9,18 +9,17 @@ const secret_key = "170904";
 router.use(express.json());
 router.use(cookieParser());
 
-const createJWT = (payload) => {
+const createJWT = (payload, key) => {
   let token = null;
   try {
-    token = jwt.sign(payload, secret_key, { expiresIn: "1h" });
+    token = jwt.sign(payload, key, { expiresIn: "1h" });
   } catch (e) {
     console.log(e);
   }
   return token;
 };
 
-const verifyJWT = (token) => {
-  let key = secret_key;
+const verifyJWT = (token, key) => {
   let data = null;
   try {
     let decoded = jwt.verify(token, key);
@@ -58,22 +57,25 @@ const authJWT = async (req, res, next) => {
 // login route
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;
-  console.log(`req.body: ${req.body}`);
+  console.log(`username: ${username}`);
   try {
     const accounts = await User.find({ username: username });
-    if (accounts.length > 0) console.log(accounts);
+    // console.log(`accounts.length: ${accounts.length}`);
+    if (accounts.length <= 0) {
+      return res.status(409).send("Username or password is wrong");
+    }
 
     if (
       accounts &&
       username === accounts[0].username &&
       password === accounts[0].password
     ) {
-      const token = createJWT({ username: username });
+      const token = createJWT({ username: username }, secret_key);
 
       res.cookie("token", token, {
         httpOnly: true,
         secure: false,
-        maxAge: 3600000,
+        maxAge: 60 * 60 * 1000,
       });
 
       return res.status(200).send("Login successful, token stored in cookie");
@@ -81,13 +83,42 @@ router.post("/login", async (req, res) => {
       return res.status(401).send("Invalid credentials");
     }
   } catch (e) {
-    console.log(e.message);
+    console.log(e);
   }
 });
 
 // logout route
 router.post("/logout", async (req, res) => {
   res.clearCookie("token");
+});
+
+// register route
+router.post("/register", async (req, res) => {
+  const { email, username, password } = req.body;
+  let users = null;
+  try {
+    users = await User.find({ username: username });
+    // console.log(`users: ${users.length}`);
+  } catch (e) {
+    console.log(e);
+    return res.status(500).send("Cannot check existing account");
+  }
+
+  if (users && users.length > 0) {
+    console.log("Username already registrated");
+    res.status(409).send("Username already registrated");
+    return;
+  } else {
+    const token = createJWT({ username: username }, secret_key);
+
+    res.cookie("token", token, {
+      httpOnly: true,
+      secure: false,
+      maxAge: 60 * 60 * 1000,
+    });
+
+    return res.status(200).send("Login successful, token stored in cookie");
+  }
 });
 
 module.exports = { router, authJWT, createJWT, verifyJWT };
