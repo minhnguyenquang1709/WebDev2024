@@ -24,6 +24,7 @@ connectToDb();
 const createDemoUser = async () => {
   try {
     const user1 = await User.create({
+      email: "email1@gmail.com",
       username: "admin",
       password: "12345678",
       profileName: "admin",
@@ -31,6 +32,7 @@ const createDemoUser = async () => {
     await user1.save();
 
     const user2 = await User.create({
+      email:"email2@gmail.com",
       username: "trananhvu",
       password: "12345678",
       profileName: "sai dep chieu",

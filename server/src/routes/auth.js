@@ -2,6 +2,7 @@ const express = require("express");
 const jwt = require("jsonwebtoken");
 const cookieParser = require("cookie-parser");
 const User = require("../schemas/User");
+const accConstants = require("../constants/account");
 
 const router = express.Router();
 const secret_key = "170904";
@@ -54,6 +55,21 @@ const authJWT = async (req, res, next) => {
   }
 };
 
+// middleware to check account info
+const checkAccInfo = (req, res, next) => {
+  const { email, username, password } = req.body;
+  if (
+    email.length < accConstants.MIN_EMAIL_LENGTH ||
+    username.length < accConstants.MIN_USERNAME_LENGTH ||
+    password.length < accConstants.MIN_PASSWORD_LENGTH
+  ) {
+    console.log("Invalid account info");
+    return res.status(409).send("Invalid account info");
+  } else {
+    next();
+  }
+};
+
 // login route
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;
@@ -93,7 +109,7 @@ router.post("/logout", async (req, res) => {
 });
 
 // register route
-router.post("/register", async (req, res) => {
+router.post("/register", checkAccInfo, async (req, res) => {
   const { email, username, password } = req.body;
   let users = null;
   try {
@@ -109,6 +125,19 @@ router.post("/register", async (req, res) => {
     res.status(409).send("Username already registrated");
     return;
   } else {
+    try {
+      const account = await User.create({
+        email: email,
+        username: username,
+        password: password,
+        profileName: `N ${Date.now()}`,
+      });
+      await account.save();
+      console.log("Account registrated");
+    } catch (e) {
+      console.log(e);
+      return res.status(500).send("Cannot create new account in database");
+    }
     const token = createJWT({ username: username }, secret_key);
 
     res.cookie("token", token, {
@@ -117,7 +146,7 @@ router.post("/register", async (req, res) => {
       maxAge: 60 * 60 * 1000,
     });
 
-    return res.status(200).send("Login successful, token stored in cookie");
+    return res.status(201).send("Registration successful, token stored in cookie");
   }
 });
 

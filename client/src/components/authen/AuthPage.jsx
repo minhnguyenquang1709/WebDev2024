@@ -46,7 +46,7 @@ const AuthPage = () => {
         { withCredentials: true }
       );
       console.log("From Register: ", response.data);
-      if (response.status !== 200) {
+      if (response.status !== 201) {
         console.log("Register failed");
         return;
       }
