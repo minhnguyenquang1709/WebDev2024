@@ -10,7 +10,6 @@ const port = process.env.PORT;
 const app = express();
 configServerApp(app);
 
-// ------------------------------------------------------------------------------
 // database
 const dbName = "appdb";
 
@@ -32,22 +31,22 @@ const createDemoUser = async () => {
     await user1.save();
 
     const user2 = await User.create({
-      email:"email2@gmail.com",
+      email: "email2@gmail.com",
       username: "trananhvu",
       password: "12345678",
       profileName: "sai dep chieu",
     });
     await user2.save();
-    // console.log("created user: ", user1.username);
+    console.log("created user: ", user1.username);
+    console.log("created user: ", user2.username);
   } catch (error) {
     console.log(error.message);
   }
 };
 
-// createDemoUser();
-
 const createDemoSurveys = async () => {
   try {
+    const [user1, user2] = await User.find().limit(2);
     for (let i = 0; i < 10; i++) {
       const survey = await Survey.create({
         title: `demo survey ${i}`,
@@ -69,7 +68,36 @@ const createDemoSurveys = async () => {
             requireAnswer: false,
           },
         ],
-        createdBy: new mongoose.Types.ObjectId("67068815857a646ce957b0f1"),
+        createdBy: new mongoose.Types.ObjectId(user1._id.toString()),
+      });
+
+      await survey.save();
+
+      console.log("created survey: ", express.json(survey));
+    }
+
+    for (let i = 0; i < 4; i++) {
+      const survey = await Survey.create({
+        title: `demo survey ${i}`,
+        description: "this is a demo survey number " + i,
+        questions: [
+          {
+            questionText: "What is your name?",
+            questionType: "text",
+          },
+          {
+            questionText: "Do you want to take a survey?",
+            questionType: "radio",
+            choices: ["yes", "no"],
+          },
+          {
+            questionText: "What do you like about us?",
+            questionType: "checkbox",
+            choices: ["option 1", "option 2", "option 3"],
+            requireAnswer: false,
+          },
+        ],
+        createdBy: new mongoose.Types.ObjectId(user2._id.toString()),
       });
 
       await survey.save();
@@ -81,6 +109,7 @@ const createDemoSurveys = async () => {
   }
 };
 
+// createDemoUser();
 // createDemoSurveys();
 
 app.listen(port, () => {

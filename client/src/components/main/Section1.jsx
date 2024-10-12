@@ -64,10 +64,10 @@ const Section1 = () => {
               <img
                 src="https://ssl.gstatic.com/docs/templates/thumbnails/forms-blank-googlecolors.png"
                 className="w-full h-[130px] object-cover rounded-lg"
-                alt="Bank Form"
+                alt="Blank Form"
               />
             </div>
-            <span className="text-base py-3">Bank Form</span>
+            <span className="text-base py-3">Blank Form</span>
           </button>
 
           {data.map((item, index) => (

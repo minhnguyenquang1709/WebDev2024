@@ -27,4 +27,6 @@ const responseSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("responses", responseSchema);
+const Response = mongoose.model("responses", responseSchema);
+
+module.exports = Response;
