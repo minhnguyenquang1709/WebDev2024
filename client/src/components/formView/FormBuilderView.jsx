@@ -38,8 +38,10 @@ const FormBuilderView = ({
     ]);
   };
 
-  const deleteQuestion = (id) =>
-    setQuestions(questions.filter((q) => q.id !== id));
+  const deleteQuestion = (id) => {
+    console.log(`question.id: ${id}`)
+    setQuestions(questions.filter((q) => q._id !== id));
+  };
 
   const saveForm = async (formData) => {
     try {

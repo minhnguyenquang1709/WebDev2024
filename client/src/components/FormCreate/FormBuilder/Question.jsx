@@ -62,7 +62,7 @@ const Question = ({
           <label>Required</label>
           <Switch checked={question.required} onChange={toggleRequired} />
         </div>
-        <IconButton onClick={() => deleteQuestion(question.id)}>
+        <IconButton onClick={() => deleteQuestion(question._id)}>
           <Delete />
         </IconButton>
       </div>
