@@ -22,7 +22,6 @@ const HeaderForm = () => {
   const [formLink, setFormLink] = useState("");
 
   const handleClickOpen = async () => {
-    // const generatedLink = `http://localhost:3000/joinlink/join/${idForm}`;
     let response = null;
     try {
       response = await axios.get(
