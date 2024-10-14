@@ -29,6 +29,10 @@ const surveySchema = new mongoose.Schema(
       type: [mongoose.SchemaTypes.ObjectId],
       default: [],
     },
+    resubmit: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: true,

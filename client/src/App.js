@@ -4,7 +4,7 @@ import "./App.css";
 import Main from "./components/main/Main";
 import Form from "./components/FormCreate/Form";
 import FormView from "./components/formView/FormView";
-import AuthPage from "./components/authen/AuthPage";
+import AuthPage from "./components/AuthPage/AuthPage";
 import FormUserInput from "./components/FormUserInput/FormUserInput";
 
 function App() {

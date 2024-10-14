@@ -2,22 +2,21 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import HeaderForm from "../FormCreate/HeaderForm";
-import FormBuilderView from "./FormBuilderView";
+import BodyFormView from "./BodyFormView";
 
 const FormView = () => {
   const { idForm } = useParams();
   const [formData, setFormData] = useState(null);
 
   useEffect(() => {
-    const fetchFormData = async () => {
-      let form = null;
+      const fetchFormData = async () => {
+        let form = null;
       try {
-        const response = await axios.get(
-          `http://localhost:3000/api/surveys/${idForm}`,
-          { withCredentials: true }
-        );
+        const url = process.env.REACT_APP_API_SURVEYS + `/${idForm}`;
+        const response = await axios.get(url, { withCredentials: true });
         form = response.data;
-        if (form) {
+          if (form) {
+            console.log(`formData: ${JSON.stringify(form)}`)
           setFormData(form);
         }
       } catch (error) {
@@ -27,19 +26,15 @@ const FormView = () => {
 
     fetchFormData();
   }, [idForm]);
-
-  console.log("formData: ", formData);
+  // console.log(formData);
 
   return (
     <div>
-      <HeaderForm />
       {formData ? (
-        <FormBuilderView
-          id={formData._id}
-          initialformTitle={formData.title}
-          initialformDescription={formData.description}
-          initialQuestions={formData.questions}
-        />
+        <>
+          <HeaderForm formTitle={formData.title} />
+          <BodyFormView {...formData} />
+        </>
       ) : (
         <p>Loading form data...</p>
       )}

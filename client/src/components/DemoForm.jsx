@@ -8,7 +8,7 @@ const DemoForm = ({
     questions,
     toggleFormDemoMode,
 }) => (
-    <div className="mx-auto max-w-3xl">
+    <div className="mx-auto max-w-3xl mt-10">
         <FormTitle formTitle={formTitle} formDescription={formDescription} />
         {questions.map((question) => (
             <div key={question.id} className="mb-5">

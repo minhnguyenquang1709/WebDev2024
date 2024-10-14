@@ -9,21 +9,21 @@ const Section1 = () => {
   const [data, setData] = useState([]);
   const [show, setShow] = useState(false);
   const navigate = useNavigate();
+
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/surveys", {withCredentials: true});
+        const url = process.env.REACT_APP_API_SURVEYS;
+        const response = await axios.get(url, { withCredentials: true });
+        console.log(`data: ${response.data}`);
         setData(response.data);
-        return response.data;
       } catch {
-        return alert("Failed to fetch data");
+        alert("Failed to fetch data");
       }
     };
 
     fetchQuestions();
   }, []);
-
-  console.log("data: ", data);
 
   const goTo = (path) => {
     navigate(path);
@@ -49,13 +49,13 @@ const Section1 = () => {
                 <KeyboardDoubleArrowDownIcon />
               </IconButton>
             </button>
-
             <IconButton>
               <MoreVertIcon />
             </IconButton>
           </div>
         </div>
-        <div className="grid grid-cols-5 mt-4 gap-10">
+
+        <div className="grid grid-cols-5 grid-rows-1 mt-4 gap-10">
           <button
             className="w-[170px] cursor-pointer flex flex-col items-start justify-start"
             onClick={() => goTo("/create-form")}
@@ -64,13 +64,13 @@ const Section1 = () => {
               <img
                 src="https://ssl.gstatic.com/docs/templates/thumbnails/forms-blank-googlecolors.png"
                 className="w-full h-[130px] object-cover rounded-lg"
-                alt="Blank Form"
+                alt="Bank Form"
               />
             </div>
-            <span className="text-base py-3">Blank Form</span>
+            <span className="text-base py-3">Bank Form</span>
           </button>
 
-          {data.map((item, index) => (
+          {(show ? data : data).map((item, index) => (
             <Link
               to={`/form/${item._id.toString()}`}
               className="w-[170px] cursor-pointer flex flex-col items-start justify-start"

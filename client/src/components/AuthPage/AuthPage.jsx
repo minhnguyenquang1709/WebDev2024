@@ -15,7 +15,6 @@ const AuthPage = () => {
   const handleLogin = async ({ username, password }) => {
     try {
       const url = process.env.REACT_APP_AUTH_LOGIN;
-      console.log(`url: ${url}, type: ${typeof url}`);
       const response = await axios.post(
         url,
         {
@@ -27,7 +26,7 @@ const AuthPage = () => {
       console.log("From Login: ", response.data);
       navigate("/main");
     } catch (e) {
-      console.log(e.message);
+      console.log(e);
     }
   };
 
@@ -55,7 +54,7 @@ const AuthPage = () => {
       }
       navigate("/main");
     } catch (e) {
-      console.log(e.message);
+      console.log(e);
     }
   };
 
@@ -88,11 +87,7 @@ const AuthPage = () => {
             </button>
           </div>
 
-          {isLogin ? (
-            <Login onLogin={handleLogin} />
-          ) : (
-            <Register onRegister={handleRegister} />
-          )}
+          {isLogin ? <Login onLogin={handleLogin} /> : <Register />}
         </div>
       </div>
     </div>

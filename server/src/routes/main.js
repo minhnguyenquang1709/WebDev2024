@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const authController = require("../controllers/authController");
-const mainController = require("../controllers/mainController")
+const mainController = require("../controllers/mainController");
 
 // get the surveys and polls associated to the user
 router.get("/surveys", authController.authJWT, mainController.pullAll);

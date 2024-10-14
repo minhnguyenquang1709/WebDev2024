@@ -69,6 +69,7 @@ const createDemoSurveys = async () => {
           },
         ],
         createdBy: new mongoose.Types.ObjectId(user1._id.toString()),
+        resubmit: false,
       });
 
       await survey.save();
@@ -98,6 +99,7 @@ const createDemoSurveys = async () => {
           },
         ],
         createdBy: new mongoose.Types.ObjectId(user2._id.toString()),
+        resubmit: false,
       });
 
       await survey.save();
@@ -109,8 +111,12 @@ const createDemoSurveys = async () => {
   }
 };
 
-// createDemoUser();
-// createDemoSurveys();
+const createDemoData = async () => {
+  await createDemoUser();
+  await createDemoSurveys();
+};
+
+// createDemoData();
 
 app.listen(port, () => {
   console.log("server running on port ", port);

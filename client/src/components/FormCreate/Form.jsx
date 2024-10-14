@@ -1,16 +1,12 @@
 import React, { useState } from "react";
 import HeaderForm from "./HeaderForm";
-import BodyForm from "./BodyForm";
-
+import FormBuilder from "./FormBuilder/FormBuilder";
 const Form = () => {
     const [formTitle, setFormTitle] = useState("Untitled Form");
     return (
         <div>
             <HeaderForm formTitle={formTitle}></HeaderForm>
-            <BodyForm
-                formTitle={formTitle}
-                setFormTitle={setFormTitle}
-            ></BodyForm>
+            <FormBuilder formTitle={formTitle} setFormTitle={setFormTitle} />
         </div>
     );
 };

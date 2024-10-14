@@ -15,7 +15,7 @@ const share = (req, res) => {
     console.log(e);
     return res.status(500).send("Error generating link");
   }
-}
+};
 
 const join = async (req, res) => {
   console.log("Begin joining a survey...");
@@ -49,4 +49,4 @@ const join = async (req, res) => {
   return survey;
 };
 
-module.exports = {join, share}
+module.exports = { join, share };
