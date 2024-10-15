@@ -35,7 +35,7 @@ const FormBuilder = ({ formTitle, setFormTitle }) => {
     };
 
     const deleteQuestion = (id) =>
-        setQuestions(questions.filter((q) => q.id !== id));
+        setQuestions(questions.filter((q) => q._id !== id));
 
   const saveForm = async (formData) => {
     const url = process.env.REACT_APP_API_SURVEYS;

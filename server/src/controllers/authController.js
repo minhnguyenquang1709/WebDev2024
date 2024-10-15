@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const User = require("../schemas/User");
 const accConstants = require("../constants/account");
-const secret_key = "170904";
+const secret_key = process.env.SECRET_KEY;
 
 const createJWT = (payload, key) => {
   let token = null;
@@ -63,6 +63,7 @@ const checkAccInfo = (req, res, next) => {
   }
 };
 
+// login handler
 const login = async (req, res) => {
   const { username, password } = req.body;
   console.log(`username: ${username}`);
@@ -95,6 +96,7 @@ const login = async (req, res) => {
   }
 };
 
+// register handler
 const register = async (req, res) => {
   const { email, username, password } = req.body;
   let users = null;
@@ -138,8 +140,18 @@ const register = async (req, res) => {
   }
 };
 
+// logout handler
 const logout = async (req, res) => {
   res.clearCookie("token");
+  res.status(200).send("Deleted user token from cookie");
 };
 
-module.exports = { login, register, logout, checkAccInfo, authJWT, verifyJWT, createJWT };
+module.exports = {
+  login,
+  register,
+  logout,
+  checkAccInfo,
+  authJWT,
+  verifyJWT,
+  createJWT,
+};

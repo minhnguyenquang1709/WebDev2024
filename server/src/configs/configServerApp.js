@@ -14,11 +14,9 @@ const configServerApp = (app) => {
   // require("dotenv").config();
 
   const mainRouter = require("../routes/main");
-  const generatorRouter = require("../routes/generator");
   const auth = require("../routes/auth");
   const allowAccessRouter = require("../routes/join");
   app.use("/api", mainRouter);
-  app.use("/new", generatorRouter);
   app.use("/auth", auth.router);
   app.use("/joinlink", allowAccessRouter);
 };

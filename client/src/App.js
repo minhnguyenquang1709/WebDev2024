@@ -15,7 +15,7 @@ function App() {
                 <Route path="/main" element={<Main />} />
                 <Route path="/create-form" element={<Form />} />
                 <Route path="/form/:idForm" element={<FormView />} />
-                <Route path="/form/input/:idForm" element={<FormUserInput />} />
+                <Route path="/form/input/:formToken" element={<FormUserInput />} />
             </Routes>
         </>
     );

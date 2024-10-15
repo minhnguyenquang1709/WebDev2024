@@ -51,7 +51,7 @@ const BodyForm = (props) => {
 
             <TabPanel value={tabValue} index={0}>
                 <FormBuilderView
-                    id={props.id}
+                    id={props._id}
                     initialTitle={props.title}
                     initialDescription={props.description}
                     initialQuestions={props.questions}

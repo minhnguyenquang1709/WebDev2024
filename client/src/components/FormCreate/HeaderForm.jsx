@@ -33,6 +33,10 @@ const HeaderForm = ({ formTitle }) => {
         setIsDrawerOpen(open);
     };
 
+    const generateShareLink = async () => {
+        
+    }
+
     const handleClickOpen = () => {
         const generatedLink = `${window.location.origin}/form/input/${idForm}`;
         setFormLink(generatedLink);

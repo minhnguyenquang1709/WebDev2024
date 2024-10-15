@@ -16,7 +16,7 @@ const responseSchema = new mongoose.Schema({
         required: true,
       },
       answer: {
-        type: mongoose.Schema.Types.Mixed,
+        type: mongoose.Schema.Types.Mixed, // flexible for different types of answer
         default: null, // for questions that does not require an answer
       },
     },
@@ -24,6 +24,10 @@ const responseSchema = new mongoose.Schema({
   submittedAt: {
     type: Date,
     default: () => Date.now(),
+  },
+  resubmissionAllowed: {
+    type: Boolean,
+    default: false,
   },
 });
 

@@ -1,5 +1,6 @@
 const Survey = require("../schemas/Survey");
 
+// get all surveys/polls to display on main page
 const pullAll = async (req, res) => {
   try {
     console.log("Getting surveys...");
@@ -15,6 +16,7 @@ const pullAll = async (req, res) => {
   }
 };
 
+// get a survey to view/edit
 const pullOne = async (req, res) => {
   console.log(`Getting survey ${req.params.id}`);
   const survey = await Survey.findOne({ _id: req.params.id });
@@ -22,6 +24,7 @@ const pullOne = async (req, res) => {
   res.send(survey);
 };
 
+// modify a survey/poll
 const modify = async (req, res) => {
   console.log(`Enter updating a survey/poll ${req.params.id}`);
 
@@ -39,6 +42,7 @@ const modify = async (req, res) => {
   }
 };
 
+// create a new survey/poll
 const create = async (req, res) => {
   console.log(`Enter creating a new survey in server...`);
   // console.log(`Data from client: ${req.body}`);
@@ -58,5 +62,7 @@ const create = async (req, res) => {
     console.log(e);
   }
 };
+
+// delete a survey/poll
 
 module.exports = { pullAll, pullOne, modify, create };

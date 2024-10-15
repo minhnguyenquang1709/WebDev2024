@@ -41,7 +41,7 @@ const FormBuilderView = ({
 
   const deleteQuestion = (id) => {
     console.log(`question.id: ${id}`);
-    setQuestions(questions.filter((q) => q.id !== id));
+    setQuestions(questions.filter((q) => q._id !== id));
   };
 
   const deleteFormData = async () => {
@@ -56,10 +56,12 @@ const FormBuilderView = ({
 
   const saveForm = async (data) => {
     try {
+      console.log(`Start saving form`);
       const url = process.env.REACT_APP_API_SURVEYS + `/${id}`;
+      console.log(`url: ${url}`);
       await axios.put(url, data);
-    } catch (error) {
-      throw error;
+    } catch (e) {
+      console.log(e);
     }
   };
 
