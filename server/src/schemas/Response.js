@@ -23,7 +23,7 @@ const responseSchema = new mongoose.Schema({
   ],
   submittedAt: {
     type: Date,
-    default: () => Date.now(),
+    default: new Date(),
   },
   resubmissionAllowed: {
     type: Boolean,

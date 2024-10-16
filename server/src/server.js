@@ -59,12 +59,12 @@ const createDemoSurveys = async () => {
           {
             questionText: "Do you want to take a survey?",
             questionType: "radio",
-            choices: ["yes", "no"],
+            options: ["yes", "no"],
           },
           {
             questionText: "What do you like about us?",
             questionType: "checkbox",
-            choices: ["option 1", "option 2", "option 3"],
+            options: ["option 1", "option 2", "option 3"],
             requireAnswer: false,
           },
         ],
@@ -89,12 +89,12 @@ const createDemoSurveys = async () => {
           {
             questionText: "Do you want to take a survey?",
             questionType: "radio",
-            choices: ["yes", "no"],
+            options: ["yes", "no"],
           },
           {
             questionText: "What do you like about us?",
             questionType: "checkbox",
-            choices: ["option 1", "option 2", "option 3"],
+            options: ["option 1", "option 2", "option 3", "option 4"],
             requireAnswer: false,
           },
         ],

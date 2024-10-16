@@ -15,4 +15,10 @@ router.put("/surveys/:id", mainController.modify);
 // create a new survey/poll and save to database
 router.post("/surveys", authController.authJWT, mainController.create);
 
+// get all responses associated to a survey
+router.get("/response/:surveyId", mainController.getSurveyResponses);
+
+// submit a response to a survey
+router.post("/response", authController.authJWT, mainController.handleResponse);
+
 module.exports = router;

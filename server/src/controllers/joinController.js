@@ -10,7 +10,7 @@ const share = (req, res) => {
   let token = null;
   try {
     token = authController.createJWT({ survey: surveyId }, join_key);
-    const link = `http://localhost:3000/joinlink/join/${token}`;
+    const link = `http://localhost:3001/form/input/${token}`;
     res.send(link);
   } catch (e) {
     console.log(e);
@@ -65,7 +65,7 @@ const join = async (req, res) => {
     return res.status(500).send("Error joining survey");
   }
 
-  return survey;
+  return res.status(200).send(survey);
 };
 
 module.exports = { join, share };

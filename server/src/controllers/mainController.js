@@ -1,4 +1,9 @@
 const Survey = require("../schemas/Survey");
+const Response = require("../schemas/Response");
+const jwt = require("jsonwebtoken");
+const { verifyJWT } = require("./authController");
+
+const key = process.env.JOIN_KEY;
 
 // get all surveys/polls to display on main page
 const pullAll = async (req, res) => {
@@ -65,4 +70,64 @@ const create = async (req, res) => {
 
 // delete a survey/poll
 
-module.exports = { pullAll, pullOne, modify, create };
+// get survey responses to display stats
+const getSurveyResponses = async (req, res) => {
+  try {
+    const surveyId = req.params.surveyId;
+    const responses = await Response.find({ survey: surveyId });
+
+    console.log(`responses: ${responses}, length = ${responses.length}`);
+
+    if (!responses || responses.length === 0) {
+      return res.status(404).send("No responses found for this survey.");
+    }
+
+    return res.status(200).send(responses);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send("Error fetching responses.");
+  }
+};
+
+const handleResponse = async (req, res) => {
+  console.log("Begin responding...");
+  try {
+    const userId = req.userId;
+    let { respondent, formToken, responses, submittedAt } = req.body;
+    let surveyId = verifyJWT(formToken, key).survey;
+    respondent = userId;
+    console.log(
+      `respondent: ${respondent}\nsurveyId: ${surveyId}\nresponses: ${responses}\nsubmittedAt: ${submittedAt}`
+    );
+
+    // check if the survey/poll allows resubmission
+    const survey = await Survey.findOne({ _id: surveyId.toString() });
+    // if (survey) {
+    //   console.log(
+    //     `surveyId: ${surveyId.toString()}\nsurvey._id: ${survey._id.toString()}`
+    //   );
+    // }
+
+    const submissionData = {
+      respondent: userId,
+      survey: surveyId,
+      responses: responses,
+      submittedAt: submittedAt,
+      resubmissionAllowed: survey.resubmit,
+    };
+
+    const newResponse = await Response.create(submissionData);
+    return res.status(200).send("Response submitted!");
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+module.exports = {
+  pullAll,
+  pullOne,
+  modify,
+  create,
+  getSurveyResponses,
+  handleResponse,
+};
