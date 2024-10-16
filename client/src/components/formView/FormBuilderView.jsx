@@ -67,8 +67,8 @@ const FormBuilderView = ({
 
   const handleSubmit = async () => {
     const data = {
-      formTitle: title,
-      formDescription: description,
+      title: title,
+      description: description,
       questions,
     };
     try {

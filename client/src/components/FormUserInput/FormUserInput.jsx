@@ -44,14 +44,36 @@ const FormUserInput = () => {
 
   const handleSubmit = async () => {
     try {
-      const url = process.env.REACT_APP_API_SURVEYS;
-      await axios.post("http://localhost:3000/responses", {
-        formId: formToken,
-        responses,
+      const url = process.env.REACT_APP_API_RESPONSE;
+
+      // Create an array of responses in the format your schema expects
+      const formattedResponses = Object.entries(responses).map(
+        ([questionId, answer]) => ({
+          questionId, // The question ID
+          answer, // The user's answer (either text, checkbox selections, or radio)
+        })
+      );
+
+      const submissionData = {
+        respondent: "USER_ID",
+        formToken: formToken, // The survey ID (or formToken in this case)
+        responses: formattedResponses, // The formatted responses
+        submittedAt: new Date(),
+      };
+
+      // Send the submission to the backend
+      const response = await axios.post(url, submissionData, {
+        withCredentials: true,
       });
-      alert("Form submitted successfully!");
+
+      if (response.status === 200) {
+        alert("Form submitted successfully!");
+      } else {
+        alert("Failed to submit form.");
+      }
     } catch (error) {
-      alert("Something went wrong while submitting the form.");
+      console.error("Submission error:", error);
+      alert("An error occurred while submitting the form.");
     }
   };
 
