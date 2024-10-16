@@ -34,6 +34,7 @@ const Register = ({ onRegister }) => {
               type="email"
               className="w-full h-14 p-4 my-2 text-black bg-white/20 rounded-lg outline-none backdrop-blur-md shadow-lg"
               placeholder="Email"
+              ref={emailRef}
               required
             />
             <i className="bx bx-envelope absolute top-1/2 right-4 transform -translate-y-1/2 text-black"></i>
@@ -43,6 +44,7 @@ const Register = ({ onRegister }) => {
               type="text"
               className="w-full h-14 p-4 my-2 text-black bg-white/20 rounded-lg outline-none backdrop-blur-md shadow-lg"
               placeholder="Enter user name"
+              ref={usernameRef}
               required
             />
             <i className="bx bx-user absolute top-1/2 right-4 transform -translate-y-1/2 text-black"></i>
@@ -52,6 +54,7 @@ const Register = ({ onRegister }) => {
               type="password"
               className="w-full h-14 p-4 my-2 text-black bg-white/20 rounded-lg outline-none backdrop-blur-md shadow-lg"
               placeholder="Enter password"
+              ref={passwordRef}
               required
             />
             <i className="bx bx-lock-alt absolute top-1/2 right-4 transform -translate-y-1/2 text-black"></i>

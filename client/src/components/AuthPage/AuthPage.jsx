@@ -87,7 +87,11 @@ const AuthPage = () => {
             </button>
           </div>
 
-          {isLogin ? <Login onLogin={handleLogin} /> : <Register />}
+          {isLogin ? (
+            <Login onLogin={handleLogin} />
+          ) : (
+            <Register onRegister={handleRegister} />
+          )}
         </div>
       </div>
     </div>
