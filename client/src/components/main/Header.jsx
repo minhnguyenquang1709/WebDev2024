@@ -95,19 +95,7 @@ const Header = () => {
                     <Avatar alt="avatar" />
                 </IconButton>
 
-        <Menu
-        // anchorEl={anchorEl}
-        // open={open}
-        // onClose={handleClose}
-        // anchorOrigin={{
-        //   vertical: 'bottom',
-        //   horizontal: 'right',
-        // }}
-        // transformOrigin={{
-        //   vertical: 'top',
-        //   horizontal: 'right',
-        // }}
-
+        <Menu        
         anchorEl={anchorEl}
         id="account-menu"
         open={open}
@@ -120,11 +108,15 @@ const Header = () => {
               overflow: 'visible',
               filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
               mt: 1.5,
+                background: 'linear-gradient(135deg, #f5f7fa, #c3cfe2)', // Soft gradient background
+                backdropFilter: 'blur(8px)', // Adds a subtle blur effect
+                border: '1px solid rgba(255, 255, 255, 0.3)', // Adds a soft border
+                borderRadius: '12px', // Smooths out the edges
               '& .MuiAvatar-root': {
                 width: 32,
                 height: 32,
                 ml: -0.5,
-                mr: 1,
+                mr: 1,                
               },
               '&::before': {
                 content: '""',
@@ -144,9 +136,7 @@ const Header = () => {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        {/* <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My Account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem> */}
+        
 
 <MenuItem onClick={handleClose}>
           <Avatar /> Profile
