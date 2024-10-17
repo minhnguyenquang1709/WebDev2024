@@ -60,15 +60,15 @@ const AuthPage = () => {
 
   return (
     <div className="bg-cover bg-center bg-no-repeat bg-fixed flex items-center justify-center min-h-screen p-5">
-      <div className="flex w-full max-w-4xl h-[600px] border-3 border-green-400/30 rounded-[30px] backdrop-blur-lg overflow-hidden">
-        <div className="flex items-center justify-center flex-col w-[55%] bg-lime-400 backdrop-blur-lg rounded-r-[30%] transition-all duration-150">
+      <div className="flex w-full max-w-4xl h-[600px] border-3 border-lime rounded-[30px] backdrop-blur-lg overflow-hidden">
+        <div className="flex items-center justify-center flex-col w-[51%] bg-lime-400 backdrop-blur-lg rounded-r-[30%] transition-all duration-150">
           <div className="relative">
             <img src={decorImage} className="w-[400px]" alt="Decor" />
           </div>
         </div>
 
-        <div className="relative w-[45%] p-5 overflow-hidden">
-          <div className="flex justify-center gap-3 mt-10">
+        <div className="relative w-[49%] p-5 overflow-hidden">
+          <div className="flex justify-center gap-3 mt-8">
             <button
               className={`font-medium py-2 px-6 rounded-full ${
                 isLogin ? "bg-lime-400 text-white" : "bg-black text-white"

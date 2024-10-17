@@ -59,16 +59,10 @@ const Login = ({ onLogin }) => {
               <label for="remember-me" class=" block text-sm text-gray-900">Remember me</label>
 
             </div>
-            <Link to="#" className="ml-12 text-sm text-black hover:underline">
+            <Link to="#" className="ml-14 text-sm text-black hover:underline">
               Forgot password?
             </Link>
           </div>
-
-          {/* <div className="flex justify-end gap-1">
-            <Link to="#" className="ml-12 text-sm text-black hover:underline">
-              Forgot password?
-            </Link>
-          </div> */}
           
           <form onSubmit={handleSubmit}>
           <button type ="submit"
@@ -79,10 +73,10 @@ const Login = ({ onLogin }) => {
         </div>
 
         <div className="flex gap-4 mt-4">
-  <AiOutlineGoogle className="w-8 h-8 bg-white/20 rounded-full shadow-lg hover:scale-95 hover:shadow-xl transition-all duration-300 ease-in-out" />
-  <AiOutlineFacebook className="w-8 h-8 bg-white/20 rounded-full shadow-lg hover:scale-95 hover:shadow-xl transition-all duration-300 ease-in-out" />
-  <AiOutlineGithub className="w-8 h-8 bg-white/20 rounded-full shadow-lg hover:scale-95 hover:shadow-xl transition-all duration-300 ease-in-out" />
-  <AiOutlineTwitter className="w-8 h-8 bg-white/20 rounded-full shadow-lg hover:scale-95 hover:shadow-xl transition-all duration-300 ease-in-out" />
+  <AiOutlineGoogle className="w-8 h-8 bg-white/20 rounded-full shadow-lg hover:scale-95 hover:shadow-xl transition-all border-grey border-2 duration-300 ease-in-out" />
+  <AiOutlineFacebook className="w-8 h-8 bg-white/20 rounded-full shadow-lg hover:scale-95 hover:shadow-xl transition-all border-grey border-2 duration-300 ease-in-out" />
+  <AiOutlineGithub className="w-8 h-8 bg-white/20 rounded-full shadow-lg hover:scale-95 hover:shadow-xl transition-all border-grey border-2 duration-300 ease-in-out" />
+  <AiOutlineTwitter className="w-8 h-8 bg-white/20 rounded-full shadow-lg hover:scale-95 hover:shadow-xl transition-all border-grey border-2 duration-300 ease-in-out" />
 </div>
 
       </div>

@@ -1,14 +1,5 @@
 import React, { useRef } from "react";
 
-
-
-import {
-  AiOutlineGoogle,
-  AiOutlineFacebook,
-  AiOutlineGithub,
-  AiOutlineTwitter,
-} from "react-icons/ai";
-import { Link } from "react-router-dom";
 const Register = ({ onRegister }) => {
   const emailRef = useRef(null);
   const usernameRef = useRef(null);
