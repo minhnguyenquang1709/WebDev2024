@@ -5,9 +5,12 @@ import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import AppsIcon from "@mui/icons-material/Apps";
 import Sidebar from "../SideBar/SideBar";
+import {  Menu, MenuItem } from '@mui/material';
+
 
 const Header = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+    
 
     const toggleDrawer = (open) => (event) => {
         if (
@@ -18,6 +21,22 @@ const Header = () => {
         }
         setIsDrawerOpen(open);
     };
+
+    const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+    
+
+
+    
 
     return (
         <div className="header flex justify-between items-center sticky inset-0 p-5 bg-white text-black">
@@ -39,7 +58,7 @@ const Header = () => {
                         alt="googleimage"
                         className="w-[40px] h-[40px] object-cover"
                     />
-                    <span className="header-title px-5 text-xl">Form</span>
+                    <span className="header-title px-5 text-xl  ">Form</span>
                 </Link>
             </div>
 
@@ -56,12 +75,32 @@ const Header = () => {
             </div>
 
             <div className="header_right flex items-center">
-                <IconButton>
+                <IconButton >
                     <AppsIcon />
                 </IconButton>
-                <IconButton>
+                
+
+                <IconButton onClick={handleClick}>
                     <Avatar alt="avatar" />
                 </IconButton>
+
+                <Menu
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'right',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+        }}
+      >
+        <MenuItem onClick={handleClose}>Profile</MenuItem>
+        <MenuItem onClick={handleClose}>My Account</MenuItem>
+        <MenuItem onClick={handleClose}>Logout</MenuItem>
+      </Menu>
             </div>
         </div>
     );
