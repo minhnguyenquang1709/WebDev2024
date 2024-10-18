@@ -67,7 +67,7 @@ const Section1 = () => {
                 alt="Bank Form"
               />
             </div>
-            <span className="text-base py-3">Bank Form</span>
+            <span className="text-base py-3">Blank Form</span>
           </button>
 
           {(show ? data : data).map((item, index) => (
@@ -83,7 +83,7 @@ const Section1 = () => {
                   alt={`{index + 1}`}
                 />
               </div>
-              <span className="text-base py-3">{item.formTitle}</span>
+              <span className="text-base py-3">{item.title}</span>
             </Link>
           ))}
         </div>
