@@ -18,7 +18,7 @@ function App() {
                 <Route path="/create-form" element={<Form />} />
                 <Route path="/form/:idForm" element={<FormView />} />
                 <Route
-                    path="/form/input/:formToken"
+                    path="/form/input/:formId" // formToken
                     element={<FormUserInput />}
                 />
                 <Route path="/search" element={<SearchResult />} />

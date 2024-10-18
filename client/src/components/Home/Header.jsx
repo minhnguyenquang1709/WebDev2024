@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { IconButton, Drawer, Avatar } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import AppsIcon from "@mui/icons-material/Apps";
 import Sidebar from "../SideBar/SideBar";
@@ -15,56 +15,58 @@ import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
 
 const Header = () => {
-    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const navigate = useNavigate();
 
-    const toggleDrawer = (open) => (event) => {
-        if (
-            event.type === "keydown" &&
-            (event.key === "Tab" || event.key === "Shift")
-        ) {
-            return;
-        }
-        setIsDrawerOpen(open);
-    };
+  const toggleDrawer = (open) => (event) => {
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
+    setIsDrawerOpen(open);
+  };
 
-    const [anchorEl, setAnchorEl] = useState(null);
-    const open = Boolean(anchorEl);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
 
-    const handleClick = (event) => {
-        setAnchorEl(event.currentTarget);
-    };
+  //   const handleClick = (event) => {
+  //     setAnchorEl(event.currentTarget);
+  //   };
 
-    const handleClose = () => {
-        setAnchorEl(null);
-    };
+  //   const handleClose = () => {
+  //     setAnchorEl(null);
+  //   };
 
-    return (
-        <div className="header flex justify-between items-center sticky inset-0 p-5 bg-white text-black">
-            <div className="header_right flex items-center">
-                <IconButton onClick={toggleDrawer(true)}>
-                    <MenuIcon />
-                </IconButton>
+  const handleClick = (event) => {
+    navigate("/login");
+  };
 
-                <Drawer open={isDrawerOpen} onClose={toggleDrawer(false)}>
-                    <Sidebar toggleDrawer={toggleDrawer} />
-                </Drawer>
+  return (
+    <div className="header flex justify-between items-center sticky inset-0 p-5 bg-white text-black">
+      <div className="header_right flex items-center">
+        <IconButton onClick={toggleDrawer(true)}>
+          <MenuIcon />
+        </IconButton>
 
-                <Link
-                    to="/main"
-                    className="header-right__img flex items-center ml-5"
-                >
-                    <img
-                        src="https://banner2.cleanpng.com/lnd/20240523/goy/axz66glt0.webp"
-                        alt="googleimage"
-                        className="w-[40px] h-[40px] object-cover"
-                    />
-                    <span className="header-title px-5 text-xl  ">Form</span>
-                </Link>
-            </div>
+        <Drawer open={isDrawerOpen} onClose={toggleDrawer(false)}>
+          <Sidebar toggleDrawer={toggleDrawer} />
+        </Drawer>
 
-            <SearchBar />
+        <Link to="/main" className="header-right__img flex items-center ml-5">
+          <img
+            src="https://banner2.cleanpng.com/lnd/20240523/goy/axz66glt0.webp"
+            alt="googleimage"
+            className="w-[40px] h-[40px] object-cover"
+          />
+          <span className="header-title px-5 text-xl  ">Form</span>
+        </Link>
+      </div>
 
-            <div className="header_right flex items-center">
+      <SearchBar />
+
+      {/* <div className="header_right flex items-center">
                 <IconButton>
                     <AppsIcon />
                 </IconButton>
@@ -141,9 +143,13 @@ const Header = () => {
                         Logout
                     </MenuItem>
                 </Menu>
-            </div>
-        </div>
-    );
+            </div> */}
+
+      <IconButton onClick={handleClick}>
+        <Avatar alt="avatar" />
+      </IconButton>
+    </div>
+  );
 };
 
 export default Header;

@@ -68,7 +68,7 @@ const createDemoSurveys = async () => {
             requireAnswer: false,
           },
         ],
-        createdBy: new mongoose.Types.ObjectId(user1._id.toString()),
+        createdBy: new mongoose.Types.ObjectId(user1.id.toString()),
         resubmit: false,
       });
 
@@ -98,7 +98,7 @@ const createDemoSurveys = async () => {
             requireAnswer: false,
           },
         ],
-        createdBy: new mongoose.Types.ObjectId(user2._id.toString()),
+        createdBy: new mongoose.Types.ObjectId(user2.id.toString()),
         resubmit: false,
       });
 

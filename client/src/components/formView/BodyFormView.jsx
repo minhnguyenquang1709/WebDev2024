@@ -35,7 +35,7 @@ const BodyForm = (props) => {
 
   const filterResponse = (data) => {
     const returnData = data.filter(
-      (survey) => survey._id.toString() == props._id
+      (survey) => survey.id.toString() == props.id
     );
     console.log(
       `response data from json-server: ${JSON.stringify(returnData)}`
@@ -45,7 +45,7 @@ const BodyForm = (props) => {
   const getResponseData = async () => {
     console.log("start getting response data...");
     try {
-      const url = process.env.REACT_APP_API_RESPONSE + `/${props._id}`;
+      // const url = process.env.REACT_APP_API_RESPONSE + `/${props.id}`;
       const response = await axios.get("http://localhost:3000/responses"); // change with url instead of json-server link when implement real server
       filterResponse(response.data); // remove when using real server
       if (response.status !== 200) {
@@ -73,7 +73,7 @@ const BodyForm = (props) => {
     console.log("start processing the response data...");
     const stats = props.questions.map((question) => {
       const statsForQuestion = {
-        questionId: question._id,
+        questionId: question.id,
         questionText: question.questionText,
         questionType: question.questionType,
         totalResponses: 0,
@@ -82,7 +82,7 @@ const BodyForm = (props) => {
 
       responses.forEach((response) => {
         const answer = response.responses.find(
-          (resp) => resp.questionId.toString() === question._id.toString()
+          (resp) => resp.questionId.toString() === question.id.toString()
         );
 
         if (answer) {
@@ -144,7 +144,7 @@ const BodyForm = (props) => {
 
       <TabPanel value={tabValue} index={0}>
         <FormBuilderView
-          id={props._id}
+          id={props.id}
           initialTitle={props.title}
           initialDescription={props.description}
           initialQuestions={props.questions}

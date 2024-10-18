@@ -41,27 +41,45 @@ const FormBuilderView = ({
 
   const deleteQuestion = (id) => {
     // console.log(`question.id: ${id}`);
-    setQuestions(questions.filter((q) => q._id !== id));
+    setQuestions(questions.filter((q) => q.id !== id));
   };
+
+  // const deleteFormData = async () => {
+  //   try {
+  //     const url = process.env.REACT_APP_API_SURVEYS + `/${id}`;
+  //     await axios.delete(url);
+  //     navigate("/main");
+  //   } catch (error) {
+  //     alert("Failed to delete form data.");
+  //   }
+  // };
 
   const deleteFormData = async () => {
     try {
-      const url = process.env.REACT_APP_API_SURVEYS + `/${id}`;
-      await axios.delete(url);
+      console.log(`trying to delete form with id: ${id}`);
+      await axios.delete(`http://localhost:3000/questions/${id}`);
       navigate("/main");
     } catch (error) {
       alert("Failed to delete form data.");
     }
   };
 
+  // const saveForm = async (data) => {
+  //   try {
+  //     console.log(`Start saving form`);
+  //     const url = process.env.REACT_APP_API_SURVEYS + `/${id}`;
+  //     // console.log(`url: ${url}`);
+  //     await axios.put(url, data);
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
+
   const saveForm = async (data) => {
     try {
-      console.log(`Start saving form`);
-      const url = process.env.REACT_APP_API_SURVEYS + `/${id}`;
-      // console.log(`url: ${url}`);
-      await axios.put(url, data);
-    } catch (e) {
-      console.log(e);
+      await axios.put(`http://localhost:3000/questions/${id}`, data);
+    } catch (error) {
+      throw error;
     }
   };
 
@@ -100,7 +118,7 @@ const FormBuilderView = ({
           />
           {questions.map((question, index) => (
             <Question
-              key={question._id}
+              key={question.id}
               question={question}
               questionIndex={index}
               questions={questions}

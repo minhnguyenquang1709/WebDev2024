@@ -41,7 +41,7 @@ const authJWT = async (req, res, next) => {
     // decoded = { username: 'something', iat: 1728470309, exp: 1728473909 }
 
     const acc = await User.findOne({ username: decoded.username });
-    req.userId = acc._id;
+    req.userId = acc.id;
     next();
   } catch (e) {
     return res.status(403).send("Invalid token");

@@ -24,7 +24,7 @@ const pullAll = async (req, res) => {
 // get a survey to view/edit
 const pullOne = async (req, res) => {
   console.log(`Getting survey ${req.params.id}`);
-  const survey = await Survey.findOne({ _id: req.params.id });
+  const survey = await Survey.findOne({ id: req.params.id });
   // console.log(`returned survey: ${survey}`)
   res.send(survey);
 };
@@ -102,10 +102,10 @@ const handleResponse = async (req, res) => {
     );
 
     // check if the survey/poll allows resubmission
-    const survey = await Survey.findOne({ _id: surveyId.toString() });
+    const survey = await Survey.findOne({ id: surveyId.toString() });
     // if (survey) {
     //   console.log(
-    //     `surveyId: ${surveyId.toString()}\nsurvey._id: ${survey._id.toString()}`
+    //     `surveyId: ${surveyId.toString()}\nsurvey.id: ${survey.id.toString()}`
     //   );
     // }
 

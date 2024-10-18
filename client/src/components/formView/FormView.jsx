@@ -9,14 +9,22 @@ const FormView = () => {
   const [formData, setFormData] = useState(null);
 
   useEffect(() => {
-      const fetchFormData = async () => {
-        let form = null;
+    const fetchFormData = async () => {
+      // let form = null;
       try {
-        const url = process.env.REACT_APP_API_SURVEYS + `/${idForm}`;
-        const response = await axios.get(url, { withCredentials: true });
-        form = response.data;
-          if (form) {
-            // console.log(`formData: ${JSON.stringify(form)}`)
+        // const url = process.env.REACT_APP_API_SURVEYS + `/${idForm}`;
+        // const response = await axios.get(url, { withCredentials: true });
+
+        const response = await axios.get("http://localhost:3000/questions");
+        // form = response.data;
+        // if (form) {
+        //   // console.log(`formData: ${JSON.stringify(form)}`)
+        //   setFormData(form);
+        // }
+
+        const allForms = response.data;
+        const form = allForms.find((f) => f.id === idForm);
+        if (form) {
           setFormData(form);
         }
       } catch (error) {
