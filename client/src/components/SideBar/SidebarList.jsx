@@ -12,28 +12,40 @@ import CloudIcon from "@mui/icons-material/Cloud";
 const SidebarList = () => {
     return (
         <>
-            <ListItem button component={Link} to="/docs">
+            <ListItem
+                button
+                component={Link}
+                to="https://workspace.google.com/products/docs/"
+            >
                 <ListItemIcon>
                     <DescriptionIcon />
                 </ListItemIcon>
                 <ListItemText primary="Docs" />
             </ListItem>
 
-            <ListItem button component={Link} to="/sheets">
+            <ListItem
+                button
+                component={Link}
+                to="https://workspace.google.com/products/sheets/"
+            >
                 <ListItemIcon>
                     <SheetsIcon />
                 </ListItemIcon>
                 <ListItemText primary="Sheets" />
             </ListItem>
 
-            <ListItem button component={Link} to="/slides">
+            <ListItem
+                button
+                component={Link}
+                to="https://workspace.google.com/products/slides/"
+            >
                 <ListItemIcon>
                     <SlideshowIcon />
                 </ListItemIcon>
                 <ListItemText primary="Slides" />
             </ListItem>
 
-            <ListItem button component={Link} to="/forms">
+            <ListItem button component={Link} to="/main">
                 <ListItemIcon>
                     <FormsIcon />
                 </ListItemIcon>

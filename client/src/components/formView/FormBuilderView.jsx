@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 const FormBuilderView = ({
   id,
-  initialTitle = "Untitled Form",
+  initialTitle,
   initialDescription = "",
   initialQuestions = [],
 }) => {

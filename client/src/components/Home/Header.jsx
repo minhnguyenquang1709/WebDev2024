@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { IconButton, Drawer, Avatar } from "@mui/material";
 import { Link } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
-import SearchIcon from "@mui/icons-material/Search";
 import AppsIcon from "@mui/icons-material/Apps";
 import Sidebar from "../SideBar/SideBar";
+import SearchBar from "../Search/SearchBar";
 
 const Header = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -43,17 +43,7 @@ const Header = () => {
                 </Link>
             </div>
 
-            <div className="header_search bg-gray-100 w-[600px] max-w-[800px] p-5 h-[45px] rounded-lg flex items-center">
-                <IconButton>
-                    <SearchIcon className="w-[40px] h-[40px]" />
-                </IconButton>
-                <input
-                    type="text"
-                    name="search"
-                    className="w-full bg-transparent outline-none"
-                    placeholder="Search"
-                />
-            </div>
+            <SearchBar/>
 
             <div className="header_right flex items-center">
                 <IconButton>

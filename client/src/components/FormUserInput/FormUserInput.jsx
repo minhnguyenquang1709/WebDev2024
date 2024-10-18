@@ -82,7 +82,7 @@ const FormUserInput = () => {
   }
 
   return (
-    <div className="mx-auto max-w-3xl">
+    <div className="mx-auto max-w-3xl mt-10">
       <FormUserTitle
         formTitle={formData.formTitle}
         formDescription={formData.formDescription}
