@@ -39,7 +39,7 @@ const BodyForm = (props) => {
       const url = process.env.REACT_APP_API_RESPONSE + `/${props._id}`;
       const response = await axios.get(url, { withCredentials: true });
       if (response.status !== 200) {
-        alert("Failed to get responses");
+        console.log("Failed to get responses");
       } else {
         console.log("get response data successful");
         setResponseData(response.data);
@@ -47,7 +47,15 @@ const BodyForm = (props) => {
         console.log(response.data);
       }
     } catch (e) {
-      console.log(e);
+      // console.log(e);
+      if (e.response) {
+        console.error(
+          `Failed to get response data, status: ${e.response.status}, ${e.response.data}`
+        );
+        setResponseData(e.response.status);
+      } else {
+        console.log("No response received");
+      }
     }
   };
 
@@ -100,7 +108,7 @@ const BodyForm = (props) => {
   };
 
   useEffect(() => {
-    console.log(`props title: ${props.title}`);
+    // console.log(`props title: ${props.title}`);
 
     // fetch responses
     if (tabValue === 1 && !responseData) {
@@ -146,6 +154,8 @@ const BodyForm = (props) => {
           // ))
 
           <DisplaySurveyResponses statistics={statistics} />
+        ) : statistics != 200 ? (
+          <p>No response found for this survey.</p>
         ) : (
           <>
             <h2>Responses</h2>

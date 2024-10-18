@@ -20,7 +20,7 @@ const FormBuilderView = ({
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log(`initialTitle: ${initialTitle}`);
+    // console.log(`initialTitle: ${initialTitle}`);
     setTitle(initialTitle);
     setDescription(initialDescription);
     setQuestions(initialQuestions);
@@ -40,7 +40,7 @@ const FormBuilderView = ({
   };
 
   const deleteQuestion = (id) => {
-    console.log(`question.id: ${id}`);
+    // console.log(`question.id: ${id}`);
     setQuestions(questions.filter((q) => q._id !== id));
   };
 
@@ -58,7 +58,7 @@ const FormBuilderView = ({
     try {
       console.log(`Start saving form`);
       const url = process.env.REACT_APP_API_SURVEYS + `/${id}`;
-      console.log(`url: ${url}`);
+      // console.log(`url: ${url}`);
       await axios.put(url, data);
     } catch (e) {
       console.log(e);

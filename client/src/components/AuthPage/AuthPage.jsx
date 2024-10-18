@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Login from "./Login";
 import Register from "./Register";
 import axios from "axios";
-import decorImage from "../../assets/Decor.png";  // Adjust the path based on your folder structure
-
+import decorImage from "../../assets/Decor.png"; // Adjust the path based on your folder structure
 
 const AuthPage = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -25,9 +24,11 @@ const AuthPage = () => {
         { withCredentials: true } // enable sending/receiving cookies
       );
       console.log("From Login: ", response.data);
+      if (response.status === 200) alert("Logged in");
       navigate("/main");
     } catch (e) {
-      console.log(e);
+      console.error(e);
+      alert("failed to log in");
     }
   };
 
@@ -48,13 +49,15 @@ const AuthPage = () => {
         { withCredentials: true }
       );
       console.log("From Register: ", response.data);
-      if (response.status !== 201) {
-        console.log("Register failed");
+      if (response.status === 201) {
+        console.log("Register successful");
+        alert("registration successful");
         return;
       }
       navigate("/main");
     } catch (e) {
       console.log(e);
+      alert("registration failed");
     }
   };
 

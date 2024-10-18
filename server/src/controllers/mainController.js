@@ -79,7 +79,8 @@ const getSurveyResponses = async (req, res) => {
     console.log(`responses: ${responses}, length = ${responses.length}`);
 
     if (!responses || responses.length === 0) {
-      return res.status(404).send("No responses found for this survey.");
+      console.log("There is no response for this survey/poll");
+      return res.status(404).send("No response found for this survey.");
     }
 
     return res.status(200).send(responses);
