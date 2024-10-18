@@ -6,36 +6,37 @@ import axios from "axios";
 import decorImage from "../../assets/Decor.png";
 
 const AuthPage = () => {
-    const [isLogin, setIsLogin] = useState(true);
-    const navigate = useNavigate();
+  const [isLogin, setIsLogin] = useState(true);
+  const navigate = useNavigate();
 
-    const toggleForm = () => {
-        setIsLogin((prev) => !prev);
-    };
+  const toggleForm = () => {
+    setIsLogin((prev) => !prev);
+  };
 
-    const handleLogin = async ({ username, password }) => {
-        try {
-            const url = process.env.REACT_APP_AUTH_LOGIN;
-            const response = await axios.post(
-                url,
-                {
-                    username,
-                    password,
-                },
-                { withCredentials: true } // enable sending/receiving cookies
-            );
-            console.log("From Login: ", response.data);
-            navigate("/main");
-        } catch (e) {
-            console.log(e);
-        }
-    };
+  const handleLogin = async ({ username, password }) => {
+    try {
+      const url = process.env.REACT_APP_AUTH_LOGIN;
+      const response = await axios.post(
+        url,
+        {
+          username,
+          password,
+        },
+        { withCredentials: true } // enable sending/receiving cookies
+      );
+      console.log("From Login: ", response.data);
+      navigate("/main");
+    } catch (e) {
+      console.log(e);
+      alert("Failed to login");
+    }
+  };
 
-    const handleRegister = async ({ email, username, password }) => {
-        if (email.length < 1 || username.length < 1 || password.length < 1) {
-            alert("Invalid info");
-            return;
-        }
+  const handleRegister = async ({ email, username, password }) => {
+    if (email.length < 1 || username.length < 1 || password.length < 1) {
+      alert("Invalid info");
+      return;
+    }
 
     try {
       const response = await axios.post(

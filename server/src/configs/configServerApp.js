@@ -11,7 +11,6 @@ const configServerApp = (app) => {
       credentials: true,
     })
   );
-  // require("dotenv").config();
 
   const mainRouter = require("../routes/main");
   const auth = require("../routes/auth");

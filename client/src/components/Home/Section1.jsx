@@ -17,7 +17,7 @@ const Section1 = () => {
                 const response = await axios.get(url, {
                     withCredentials: true,
                 });
-                console.log(`data: ${response.data}`);
+                // console.log(`data: ${response.data}`); // print data
                 setData(response.data);
             } catch {
                 alert("Failed to fetch data");
@@ -69,7 +69,7 @@ const Section1 = () => {
                                 alt="Bank Form"
                             />
                         </div>
-                        <span className="text-base py-3">Bank Form</span>
+                        <span className="text-base py-3">Blank Form</span>
                     </button>
 
                     {(show ? data : data).map((item, index) => (
@@ -86,7 +86,7 @@ const Section1 = () => {
                                 />
                             </div>
                             <span className="text-base py-3">
-                                {item.formTitle}
+                                {item.title}
                             </span>
                         </Link>
                     ))}

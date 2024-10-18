@@ -43,6 +43,7 @@ const FormUserInput = () => {
   };
 
   const handleSubmit = async () => {
+    console.log("start handling submit...");
     try {
       const url = process.env.REACT_APP_API_RESPONSE;
 
@@ -54,17 +55,28 @@ const FormUserInput = () => {
         })
       );
 
+      // const submissionData = {
+      //   respondent: "USER_ID",
+      //   formToken: formToken, // The survey ID (or formToken in this case)
+      //   responses: formattedResponses, // The formatted responses
+      //   submittedAt: new Date(),
+      // };
+
       const submissionData = {
         respondent: "USER_ID",
-        formToken: formToken, // The survey ID (or formToken in this case)
+        formId: formData._id, // The survey ID (or formToken in this case)
         responses: formattedResponses, // The formatted responses
         submittedAt: new Date(),
       };
 
       // Send the submission to the backend
-      const response = await axios.post(url, submissionData, {
-        withCredentials: true,
-      });
+      const response = await axios.post(
+        "http://localhost:3000/responses",
+        submissionData
+        // {
+        //   withCredentials: true,
+        // }
+      );
 
       if (response.status === 200) {
         alert("Form submitted successfully!");
@@ -84,8 +96,8 @@ const FormUserInput = () => {
   return (
     <div className="mx-auto max-w-3xl mt-10">
       <FormUserTitle
-        formTitle={formData.formTitle}
-        formDescription={formData.formDescription}
+        formTitle={formData.title}
+        formDescription={formData.description}
       />
       {formData.questions.map((question) => (
         <div key={question._id} className="mb-5">

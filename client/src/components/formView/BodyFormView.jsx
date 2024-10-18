@@ -33,11 +33,21 @@ const BodyForm = (props) => {
     setTabValue(newValue);
   };
 
+  const filterResponse = (data) => {
+    const returnData = data.filter(
+      (survey) => survey._id.toString() == props._id
+    );
+    console.log(
+      `response data from json-server: ${JSON.stringify(returnData)}`
+    );
+    return returnData;
+  };
   const getResponseData = async () => {
     console.log("start getting response data...");
     try {
       const url = process.env.REACT_APP_API_RESPONSE + `/${props._id}`;
-      const response = await axios.get(url, { withCredentials: true });
+      const response = await axios.get("http://localhost:3000/responses"); // change with url instead of json-server link when implement real server
+      filterResponse(response.data); // remove when using real server
       if (response.status !== 200) {
         console.log("Failed to get responses");
       } else {
