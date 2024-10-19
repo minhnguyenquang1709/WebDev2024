@@ -38,16 +38,16 @@ const FormBuilder = ({ formTitle, setFormTitle }) => {
     setQuestions(questions.filter((q) => q.id !== id));
 
   const saveForm = async (formData) => {
-    const url = process.env.REACT_APP_API_SURVEYS;
-    const response = await axios.post(url, formData);
+    // const url = process.env.REACT_APP_API_SURVEYS;
+    const response = await axios.post("http://localhost:3000/questions", formData);
     return response.data;
   };
 
   const handleSubmit = async () => {
     try {
       const response = await saveForm({
-        formTitle,
-        formDescription,
+        title: formTitle,
+        description: formDescription,
         questions,
       });
       alert("Form saved successfully!");
