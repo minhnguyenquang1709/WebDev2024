@@ -27,44 +27,43 @@ const Login = ({ onLogin }) => {
         </div>
 
         <div className="w-full">
-          <div class="relative">
-            <input
-              type="text"
-              className="w-full h-14 p-4 my-2 text-black bg-white/20 rounded-full outline-none backdrop-blur-md border-grey border-2 shadow-sm"
-              placeholder="Enter user name"
-              ref={usernameRef}
-              required
-            />
-            <i class="bx bx-user absolute top-1/2 right-4 transform -translate-y-1/2 text-black"></i>
-          </div>
-          <div className="relative">
-            <input
-              type="password"
-              className="w-full h-14 p-4 my-2 text-black bg-white/20 rounded-full outline-none backdrop-blur-md border-grey border-2 shadow-sm"
-              placeholder="Enter password"
-              ref={passwordRef}
-              required
-            />
-            <i className="bx bx-lock-alt absolute top-1/2 right-4 transform -translate-y-1/2 text-black"></i>
-          </div>
-
-          <div class="flex justify-start ">
-            <div class="flex items-center justify-start">
-              <input
-                id="remember-me"
-                type="checkbox"
-                className="ml-3 mr-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded "
-              />
-              <label for="remember-me" class=" block text-sm text-gray-900">
-                Remember me
-              </label>
-            </div>
-            <Link to="#" className="ml-14 text-sm text-black hover:underline">
-              Forgot password?
-            </Link>
-          </div>
-
           <form onSubmit={handleSubmit}>
+            <div class="relative">
+              <input
+                type="text"
+                className="w-full h-14 p-4 my-2 text-black bg-white/20 rounded-full outline-none backdrop-blur-md border-grey border-2 shadow-sm"
+                placeholder="Enter user name"
+                ref={usernameRef}
+                required
+              />
+              <i class="bx bx-user absolute top-1/2 right-4 transform -translate-y-1/2 text-black"></i>
+            </div>
+            <div className="relative">
+              <input
+                type="password"
+                className="w-full h-14 p-4 my-2 text-black bg-white/20 rounded-full outline-none backdrop-blur-md border-grey border-2 shadow-sm"
+                placeholder="Enter password"
+                ref={passwordRef}
+                required
+              />
+              <i className="bx bx-lock-alt absolute top-1/2 right-4 transform -translate-y-1/2 text-black"></i>
+            </div>
+
+            <div class="flex justify-start ">
+              <div class="flex items-center justify-start">
+                <input
+                  id="remember-me"
+                  type="checkbox"
+                  className="ml-3 mr-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded "
+                />
+                <label for="remember-me" class=" block text-sm text-gray-900">
+                  Remember me
+                </label>
+              </div>
+              <Link to="#" className="ml-14 text-sm text-black hover:underline">
+                Forgot password?
+              </Link>
+            </div>
             <button
               type="submit"
               className="flex items-center justify-center w-full h-14 mt-5 bg-lime-400 text-white rounded-full shadow-md transition duration-300 gap-2 hover:gap-4"
