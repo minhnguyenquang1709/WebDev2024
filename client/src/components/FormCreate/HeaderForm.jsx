@@ -63,7 +63,7 @@ const HeaderForm = ({ formTitle }) => {
   };
 
   return (
-    <div className=" flex justify-between items-center sticky inset-0 p-5 bg-white shadow-md">
+    <div className=" flex justify-between items-center sticky inset-0 p-5 bg-white shadow-md z-10">
       <div className=" flex items-center">
         <IconButton onClick={toggleDrawer(true)}>
           <MenuIcon />
@@ -94,9 +94,9 @@ const HeaderForm = ({ formTitle }) => {
         />
       </div>
       <div className="flex items-center">
-        <IconButton aria-label="apps">
+        {/* <IconButton aria-label="apps">
           <AppsIcon />
-        </IconButton>
+        </IconButton> */}
         <IconButton aria-label="avatar" onClick={handleClick}>
           <Avatar alt="avatar" />
         </IconButton>
@@ -104,7 +104,7 @@ const HeaderForm = ({ formTitle }) => {
           variant="contained"
           color="primary"
           onClick={handleClickOpen}
-          className="ml-4 bg-purple-600 hover:bg-purple-700"
+          className="!ml-4 bg-purple-600 hover:bg-purple-700"
         >
           Send
         </Button>
